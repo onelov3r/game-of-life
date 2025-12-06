@@ -8,7 +8,8 @@ class Iteration:
             self.grid = grid
         else:
             raise ValueError('\'grid\' shoulde be an instance of class Grid')
-    
+        
+    @staticmethod
     def _count_neighbors(grid, i, j):
         neighbors_count = 0
         neighbors_count += grid.get(i - 1, j)

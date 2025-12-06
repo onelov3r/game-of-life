@@ -9,7 +9,7 @@ init_grid = [
     [0, 0, 0, 0, 1]
 ]
 
-grid = Grid(len(init_grid), init_grid)
+grid = Grid(10)
 iteration = Iteration(grid)
 
 print(grid)

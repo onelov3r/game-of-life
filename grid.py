@@ -3,7 +3,8 @@ class Grid:
     def __init__(self, grid_size=8, init_grid=None):
         self.grid_size = grid_size
         if init_grid is None:
-            self.grid = [([0] * grid_size)] * grid_size
+            import random
+            self.grid = [[random.randint(0, 1) for _ in range(grid_size)] for _ in range(grid_size)]
         else:
             if len(init_grid) != grid_size:
                 raise ValueError('Grid size is not equal to \'grid_size\'')
