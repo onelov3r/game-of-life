@@ -33,4 +33,5 @@ class Iteration:
                 elif cell == 1 and neighbors not in (2, 3):
                     new_grid.set(i, j, 0)
         self.grid = new_grid
-        print(self.grid)
+        #print(self.grid)
+        return new_grid
