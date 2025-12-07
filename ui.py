@@ -6,33 +6,40 @@ import time
 
 class GameUI:
 
-    def __init__(self, grid_size=20, cell_size=20, update_delay=0.2):
+    def __init__(self, cell_size=20, update_delay=0.2):
         pygame.init()
 
-        self.grid_size = grid_size
         self.cell_size = cell_size
+
+        info = pygame.display.Info()
+        screen_w, screen_h = info.current_w, info.current_h
+
+        self.grid_width = screen_w // cell_size
+        self.grid_height = screen_h // cell_size
+
         self.update_delay = update_delay
 
-        self.grid = Grid(grid_size)
+        self.grid = Grid(self.grid_width, self.grid_height)
         self.iteration = Iteration(self.grid)
 
-        width = grid_size * cell_size
-        height = grid_size * cell_size
-        self.screen = pygame.display.set_mode((width, height))
+        self.window_width = self.cell_size * self.grid_width
+        self.window_height = self.cell_size * self.grid_height
+
+        self.screen = pygame.display.set_mode((self.window_width, self.window_height), pygame.FULLSCREEN)
         pygame.display.set_caption('Game of Life')
 
         self.running = False
         self.last_update = time.time()
 
-        self.dead_color = (0, 0, 0) 
-        self.alive_color = (255, 255, 255)
+        self.dead_color = (0x1e, 0x1e, 0x1e)
+        self.alive_color = (255, 255, 255) 
 
     def draw_grid(self):
 
         self.screen.fill(self.dead_color)
 
-        for i in range(self.grid_size):
-            for j in range(self.grid_size):
+        for i in range(self.grid_height):
+            for j in range(self.grid_width):
 
                 value = self.grid.get(i, j)
 

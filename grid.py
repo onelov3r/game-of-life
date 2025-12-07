@@ -1,20 +1,19 @@
 class Grid:
 
-    def __init__(self, grid_size=8, init_grid=None):
-        self.grid_size = grid_size
+    def __init__(self, grid_width=8, grid_height=8, init_grid=None):
+        self.grid_width = grid_width
+        self.grid_height = grid_height
         if init_grid is None:
             import random
-            self.grid = [[random.randint(0, 1) for _ in range(grid_size)] for _ in range(grid_size)]
+            self.grid = [[random.randint(0, 1) for _ in range(self.grid_width)] for _ in range(self.grid_height)]
         else:
-            if len(init_grid) != grid_size:
+            if len(init_grid) != grid_height:
                 raise ValueError('Grid size is not equal to \'grid_size\'')
             self.grid = init_grid
 
     def get(self, i, j):
-        if i < 0 or i > self.grid_size - 1:
-            return 0
-        if j < 0 or j > self.grid_size - 1:
-            return 0
+        i %= self.grid_height
+        j %= self.grid_width
         return self.grid[i][j]
     
     def set(self, i, j, value):
@@ -28,7 +27,7 @@ class Grid:
     def clone(self):
         import copy
         grid_copy = [row.copy() for row in self.grid]
-        return Grid(self.grid_size, grid_copy)
+        return Grid(self.grid_width, self.grid_height, grid_copy)
 
     def __repr__(self):
         string = 'Grid:\n'
