@@ -25,14 +25,14 @@ class GameUI:
         self.window_width = self.cell_size * self.grid_width
         self.window_height = self.cell_size * self.grid_height
 
-        self.screen = pygame.display.set_mode((self.window_width, self.window_height), pygame.FULLSCREEN)
+        self.screen = pygame.display.set_mode((self.window_width, self.window_height), pygame.NOFRAME | pygame.FULLSCREEN)
         pygame.display.set_caption('Game of Life')
 
         self.running = False
         self.last_update = time.time()
 
-        self.dead_color = (0x1e, 0x1e, 0x1e)
-        self.alive_color = (255, 255, 255) 
+        self.dead_color = (0x00, 0x1a, 0x00)
+        self.alive_color = (0x00, 0xFF, 0x41)
 
     def draw_grid(self):
 
